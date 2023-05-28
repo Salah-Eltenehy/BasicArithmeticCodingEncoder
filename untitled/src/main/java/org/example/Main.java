@@ -7,8 +7,8 @@ import org.example.algorithm.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String inputFilePath = "F:/Codes/Java/test/untitled/src/main/java/org/example/input.txt";
-        String outputFilePath = "F:/Codes/Java/test/untitled/src/main/java/org/example/output.txt";
+        String inputFilePath = "input.txt";
+        String outputFilePath = "output.txt";
 
         BasicArithmeticCodingEncoderInterface compression = new Compression();
 
