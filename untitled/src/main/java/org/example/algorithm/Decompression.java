@@ -33,7 +33,7 @@ public class Decompression  implements BasicArithmeticCodingEncoderInterface{
             }
             
             String[] parts = line.split(":");
-            if (parts.length <  2) {
+            if (parts.length < 2) {
                 continue;
             }
 
@@ -41,7 +41,7 @@ public class Decompression  implements BasicArithmeticCodingEncoderInterface{
                 int frequency = Integer.parseInt(parts[1].trim());
                 messageLength += frequency;
             } else {
-                char c = parts[0].length() == 0 ? '\n': parts[0].charAt(0) ;
+                char c = parts[0].charAt(0);
                 String[] rangeParts = parts[1].split("-");
                 double low = Double.parseDouble(rangeParts[0].trim());
                 double high = Double.parseDouble(rangeParts[1].trim());

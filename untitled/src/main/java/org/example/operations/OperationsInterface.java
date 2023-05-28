@@ -6,5 +6,5 @@ public interface OperationsInterface {
     byte[] readFileAsBytes(String filePath)  throws IOException;
     Map<Character, Integer> calculateCharFrequencies(byte[] fileBytes);
     Map<Character, ProbabilityRange> generateProbabilities(Map<Character, Integer> charFrequencies);
-    void writeOutputFile(String filePath, Map<Character, Integer> charFrequencies, Map<Character, ProbabilityRange> probabilities, double encodedValue) throws IOException;
+    void writeOutputFile(String filePath, Map<Character, Integer> charFrequencies, Map<Character, ProbabilityRange> probabilities, double encodedValue) throws IOException ;
 }

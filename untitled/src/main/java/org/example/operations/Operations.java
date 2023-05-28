@@ -42,6 +42,7 @@ public class Operations implements OperationsInterface {
 
         return probabilities;
     }
+
     @Override
     public void writeOutputFile(String filePath, Map<Character, Integer> charFrequencies,
             Map<Character, ProbabilityRange> probabilities, double encodedValue) throws IOException {
