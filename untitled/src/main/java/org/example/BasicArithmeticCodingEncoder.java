@@ -1,8 +1,7 @@
-package org.example.algorithm;
+package org.example;
 
 import java.util.*;
 
-import org.example.ProbabilityRange;
 public class BasicArithmeticCodingEncoder {
     public static double encode(String message, Map<Character, ProbabilityRange> probabilities) {
         // Initialize the range variables

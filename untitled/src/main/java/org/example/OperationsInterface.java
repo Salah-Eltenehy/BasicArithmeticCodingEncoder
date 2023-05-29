@@ -1,7 +1,6 @@
-package org.example.operations;
+package org.example;
 import java.io.IOException;
 import java.util.*;
-import org.example.ProbabilityRange;
 public interface OperationsInterface {
     byte[] readFileAsBytes(String filePath)  throws IOException;
     Map<Character, Integer> calculateCharFrequencies(byte[] fileBytes);

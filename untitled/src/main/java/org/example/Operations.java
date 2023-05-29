@@ -1,4 +1,4 @@
-package org.example.operations;
+package org.example;
 
 import java.util.Map;
 
@@ -7,8 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-
-import org.example.ProbabilityRange;
 
 public class Operations implements OperationsInterface {
 
@@ -46,7 +44,7 @@ public class Operations implements OperationsInterface {
     @Override
     public void writeOutputFile(String filePath, double encodedValue) throws IOException {
                 try (FileWriter writer = new FileWriter(filePath, true)) {
-                    writer.write("\nD:" + encodedValue);
+                    writer.write("\nD:" + String.format("%20f", encodedValue));
                 }
     }
 

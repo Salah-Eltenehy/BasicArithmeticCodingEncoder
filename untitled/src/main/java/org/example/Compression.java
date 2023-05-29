@@ -1,14 +1,9 @@
-package org.example.algorithm;
+package org.example;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
-
-import org.example.ProbabilityRange;
-import org.example.operations.*;
 
 public class Compression implements BasicArithmeticCodingEncoderInterface {
     private static int buffer_size = 20;
@@ -23,10 +18,11 @@ public class Compression implements BasicArithmeticCodingEncoderInterface {
         Map<Character, ProbabilityRange> probabilities = operationsInterface.generateProbabilities(charFrequencies);
         ByteBuffer byteBuffer = ByteBuffer.wrap(fileBytes);
         operationsInterface.writeOutputFileHeader(outputFilePath, charFrequencies, probabilities);
+        int amountRead = 0;
         while (byteBuffer.hasRemaining()) {
-            int s = Math.min(buffer_size, byteBuffer.capacity());
+            int s = Math.min(buffer_size, byteBuffer.capacity() - amountRead);
+            amountRead += s;
             byte[] msg = new byte[s];
-            System.out.println(byteBuffer.capacity());
             byteBuffer.get(msg);
             String message = new String(msg, StandardCharsets.UTF_8);
             
