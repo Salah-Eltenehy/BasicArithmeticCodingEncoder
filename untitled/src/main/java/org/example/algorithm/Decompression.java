@@ -20,6 +20,8 @@ public class Decompression  implements BasicArithmeticCodingEncoderInterface{
         int messageLength = 0;
 
         boolean readingProbabilities = false;
+        boolean dest = true;
+        String res = "";
         for (String line : lines) {
             if (line.startsWith("F:")) {
                 continue;
@@ -28,28 +30,31 @@ public class Decompression  implements BasicArithmeticCodingEncoderInterface{
                 continue;
             } else if (line.startsWith("D:")) {
                 readingProbabilities = false;
+                dest = false;
                 encodedValue = Double.parseDouble(line.substring("D:\n".length()).trim());
-                break;
+                res += BasicArithmeticCodingEncoder.decode(encodedValue, messageLength, probabilities);
+                //break;
             }
-            
-            String[] parts = line.split(":");
-            if (parts.length < 2) {
-                continue;
-            }
+            if (dest){    
+                String[] parts = line.split(":");
+                if (parts.length < 2) {
+                    continue;
+                }
 
-            if (!readingProbabilities) {
-                int frequency = Integer.parseInt(parts[1].trim());
-                messageLength += frequency;
-            } else {
-                char c = parts[0].charAt(0);
-                String[] rangeParts = parts[1].split("-");
-                double low = Double.parseDouble(rangeParts[0].trim());
-                double high = Double.parseDouble(rangeParts[1].trim());
-                probabilities.put(c, new ProbabilityRange(low, high));
+                if (!readingProbabilities) {
+                    int frequency = Integer.parseInt(parts[1].trim());
+                    messageLength += frequency;
+                } else {
+                    char c = parts[0].charAt(0);
+                    String[] rangeParts = parts[1].split("-");
+                    double low = Double.parseDouble(rangeParts[0].trim());
+                    double high = Double.parseDouble(rangeParts[1].trim());
+                    probabilities.put(c, new ProbabilityRange(low, high));
+                }
             }
         }
 
-        return BasicArithmeticCodingEncoder.decode(encodedValue, messageLength, probabilities);
+        return res;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.*;
 
 import org.example.algorithm.*;
@@ -15,7 +16,6 @@ public class Main {
         compression.encode(inputFilePath, outputFilePath);
         
         BasicArithmeticCodingEncoderInterface deCompression = new Decompression();
-        
         System.out.println(deCompression.decompress(outputFilePath));
 
 

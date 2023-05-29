@@ -42,10 +42,17 @@ public class Operations implements OperationsInterface {
 
         return probabilities;
     }
+    
+    @Override
+    public void writeOutputFile(String filePath, double encodedValue) throws IOException {
+                try (FileWriter writer = new FileWriter(filePath, true)) {
+                    writer.write("\nD:" + encodedValue);
+                }
+    }
 
     @Override
-    public void writeOutputFile(String filePath, Map<Character, Integer> charFrequencies,
-            Map<Character, ProbabilityRange> probabilities, double encodedValue) throws IOException {
+    public void writeOutputFileHeader(String filePath, Map<Character, Integer> charFrequencies,
+            Map<Character, ProbabilityRange> probabilities) throws IOException {
                 try (FileWriter writer = new FileWriter(filePath)) {
                     writer.write("F:\n");
                     for (Map.Entry<Character, Integer> entry : charFrequencies.entrySet()) {
@@ -55,7 +62,7 @@ public class Operations implements OperationsInterface {
                     for (Map.Entry<Character, ProbabilityRange> entry : probabilities.entrySet()) {
                         writer.write(entry.getKey() + ": " + entry.getValue().low + " - " + entry.getValue().high + "\n");
                     }
-                    writer.write("\nD:" + encodedValue);
+
                 }
     }
     
